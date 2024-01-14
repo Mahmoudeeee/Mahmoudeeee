@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+        button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ToDo List</h1>
+        <form id="todo-form">
+            <input type="text" id="todo-input" placeholder="Enter a task...">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="todo-list">
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('todo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const task = document.getElementById('todo-input').value.trim();
+            if (task) {
+                addTaskToList(task);
+                document.getElementById('todo-input').value = '';
+            }
+        });
+
+        function addTaskToList(task) {
+            const li = document.createElement('li');
+            li.textContent = task;
+
+            const button = document.createElement('button');
+            button.textContent = 'Delete';
+            button.addEventListener('click', function() {
+                li.remove();
+            });
+
+            li.appendChild(button);
+            document.getElementById('todo-list').appendChild(li);
+        }
+    </script>
+</body>
+</html>
